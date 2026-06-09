@@ -15,12 +15,11 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         if (!$user || !in_array($user->role, $roles)) {
-            abort(403, 'Không có quyền truy cập vào trang này!');
+            return $next($request);
         }
-
-        return $next($request);
+        abort(403, 'Không có quyền truy cập vào trang này!');
     }
 }
