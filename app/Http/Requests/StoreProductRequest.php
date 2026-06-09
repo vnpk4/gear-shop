@@ -28,6 +28,7 @@ class StoreProductRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'brand_id'    => 'required|exists:brands,id',
             'description' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
         ];
     }
 }

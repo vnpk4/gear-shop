@@ -31,6 +31,10 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $validatedData = $request->validated();
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $validatedData['image_path'] = $path;
+        }
         $validatedData['created_by'] = Auth::id();
         Product::create($validatedData);
         return redirect()->route('admin.products.index')
