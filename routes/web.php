@@ -3,10 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
-Route::get('/', function () {
-    return view('welcome');
-});
-
+use App\Http\Controllers\Customer\CustomerController;
+Route::get('/', [CustomerController::class, 'index'])->name('home');
+Route::get('/category/{slug}', [CustomerController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
