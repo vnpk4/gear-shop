@@ -18,7 +18,7 @@ class RoleMiddleware
     {
         $user = $request->user();
 
-        if (!$user || !in_array($user->role, $roles)) {
+        if ($user || in_array($user->role, $roles)) {
             return $next($request);
         }
         abort(403, 'Không có quyền truy cập vào trang này!');

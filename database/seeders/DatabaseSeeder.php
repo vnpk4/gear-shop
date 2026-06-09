@@ -26,16 +26,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'email_verified_at' => now(), 
         ]);
-
-        User::create([
-            'name' => 'nhanvien',
-            'realname' => 'Trần Văn Nhân Viên',
-            'email' => 'staff@gmail.com',
-            'password' => bcrypt('12345678'),
-            'role' => 'staff',
-            'email_verified_at' => now(),
-        ]);
-
         User::create([
             'name' => 'khachhang',
             'realname' => 'Lê Khách Hàng',
@@ -44,13 +34,9 @@ class DatabaseSeeder extends Seeder
             'role' => 'customer',
             'email_verified_at' => now(),
         ]);
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
 
-        Category::factory()->count(4)->create();
+        Category::factory()->count(3)->create();
         Brand::factory()->count(5)->create();
-        Product::factory()->count(20)->create();
+        Product::factory()->count(50)->create();
     }
 }

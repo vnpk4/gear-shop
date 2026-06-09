@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->unique()->randomElement(['Chuột Gaming', 'Bàn phím cơ', 'Chuột Văn Phòng', 'Bàn phím giả cơ']);
+        $name = fake()->unique()->randomElement(['Chuột','Bàn phím', 'Tai nghe']);
         return [
             'name'=>$name,
             'slug'=>str($name)->slug(),
