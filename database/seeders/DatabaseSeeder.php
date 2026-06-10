@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         User::create([
             'name' => 'admin',
-            'realname' => 'Nguyễn Quản Trị',
+            'realname' => 'Quản trị viên',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
             'role' => 'admin',
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::create([
             'name' => 'khachhang',
-            'realname' => 'Lê Khách Hàng',
+            'realname' => 'Test Customer',
             'email' => 'customer@gmail.com',
             'password' => bcrypt('12345678'),
             'role' => 'customer',

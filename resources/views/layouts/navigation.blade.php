@@ -37,13 +37,15 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
+                        <x-dropdown-link :href="route('customer.orders.index')">
+                            {{ __('Lịch sử đặt hàng') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                                onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -75,7 +77,9 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800"><div>{{ Auth::user()?->name ?? 'Tài khoản khách' }}</div></div>
+                <div class="font-medium text-base text-gray-800">
+                    <div>{{ Auth::user()?->name ?? 'Tài khoản khách' }}</div>
+                </div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()?->email ?? 'Email không có sẵn' }}</div>
             </div>
 
@@ -89,7 +93,7 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

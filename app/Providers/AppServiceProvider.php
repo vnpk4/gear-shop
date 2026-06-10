@@ -20,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (!app()->runningInConsole()) {
+            
         View::share('categories', Category::all());
+            \Illuminate\Support\Facades\View::share('categories', \App\Models\Category::all());
+            
+        }
     }
 }

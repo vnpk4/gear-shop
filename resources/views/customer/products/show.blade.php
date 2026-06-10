@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Chi tiết Sản phẩm') }}
             </h2>
-            <a href="{{ route('admin.products.index') }}" class="text-gray-500 hover:text-gray-700 font-medium underline">
+            <a href="{{ route('customer.products.index') }}" class="text-gray-500 hover:text-gray-700 font-medium underline">
                 &larr; Quay lại danh sách
             </a>
         </div>
@@ -81,21 +81,60 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="mt-8">
+                            @if(Auth::user()->role === 'customer')
+                            <div class="flex gap-4">
 
-                        <div class="mt-auto flex space-x-4">
-                            <a href="{{ route('admin.products.edit', $product->id) }}" class="flex-1 bg-blue-600 hover:bg-blue-700 text-black font-bold py-3 px-4 rounded shadow flex justify-center items-center transition duration-200 text-center">
-                                Sửa thông tin sản phẩm
-                            </a>
+                                <form action="{{ route('customer.cart.add', $product->id) }}" method="POST" class="flex-1">
+                                    @csrf
+                                    <div class="w-45 flex-shrink-0">
+                                        <input type="number" name="quantity" min="1" max="100"
+                                            class="w-full h-full text-center border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl font-bold text-xl text-gray-700 bg-gray-50 hover:bg-white transition-colors"  placeholder="Nhập số lượng"
+                                            required>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-blue-200 flex items-center justify-center space-x-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                        </svg>
+                                        <span>THÊM VÀO GIỎ HÀNG</span>
+                                    </button>
+                                </form>
 
-                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="flex-1" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="w-full bg-red-100 hover:bg-red-200 text-red-700 font-bold py-3 px-4 rounded border border-red-200 transition duration-200">
-                                    Xóa sản phẩm
-                                </button>
-                            </form>
+                            </div>
+
+                            @else
+                            <div class="flex flex-col gap-3">
+                                <div class="flex gap-3">
+                                    <a href="{{ route('admin.products.edit', $product->id) }}" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl text-center transition-colors flex items-center justify-center space-x-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                        </svg>
+                                        <span>CHỈNH SỬA</span>
+                                    </a>
+
+                                    <a href="{{ route('admin.products.index') }}" class="flex-1 bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-xl text-center transition-colors flex items-center justify-center space-x-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                                        </svg>
+                                        <span>DANH SÁCH QUẢN TRỊ</span>
+                                    </a>
+                                </div>
+
+                                <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa vĩnh viễn sản phẩm này?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                        </svg>
+                                        <span>XÓA SẢN PHẨM</span>
+                                    </button>
+                                </form>
+                            </div>
+                            @endif
                         </div>
-
                     </div>
                 </div>
 

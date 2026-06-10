@@ -12,18 +12,48 @@ class CustomerController extends Controller
      */
     public function index(Request $request, $categorySlug = null)
     {
-    $categories = \App\Models\Category::all();
+        $categories = \App\Models\Category::all();
+        $brands = \App\Models\Brand::all();
+        $query = \App\Models\Product::query();
 
-    $query = \App\Models\Product::query();
+        if ($categorySlug) {
+            $category = \App\Models\Category::where('slug', $categorySlug)->firstOrFail();
+            $query->where('category_id', $category->id);
+        }
+        if ($categorySlug) {
+            $category = \App\Models\Category::where('slug', $categorySlug)->firstOrFail();
+            $query->where('category_id', $category->id);
+        }
+        if ($request->filled('categories')) {
+            $query->whereIn('category_id', $request->categories);
+        }
 
-    if ($categorySlug) {
-        $category = \App\Models\Category::where('slug', $categorySlug)->firstOrFail();
-        $query->where('category_id', $category->id);
-    }
+        if ($request->filled('brands')) {
+            $query->whereIn('brand_id', $request->brands);
+        }
 
-    $products = $query->latest()->get();
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
 
-    return view('customer.products.index', compact('products', 'categories'));
+        if ($request->filled('sort')) {
+            if ($request->sort === 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->sort === 'price_desc') {
+                $query->orderBy('price', 'desc');
+            }
+        } else {
+            $query->latest();
+        }
+        if ($request->has('keyword') && $request->keyword != '') {
+            $keyword = $request->keyword;
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+        $products = $query->paginate(12)->withQueryString();
+        return view('customer.products.index', compact('products', 'categories', 'brands'));
     }
 
     /**
@@ -47,7 +77,9 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = \App\Models\Product::with('brand')->findOrFail($id);
+
+        return view('customer.products.show', compact('product'));
     }
 
     /**
