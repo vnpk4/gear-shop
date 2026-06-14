@@ -1,13 +1,13 @@
 <x-app-layout>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-background min-h-screen text-on-surface">
         
         <div class="flex items-center justify-between mb-8">
-            <h2 class="text-2xl font-bold text-gray-900">
+            <h2 class="text-2xl font-black text-on-surface font-sora uppercase tracking-tight">
                 Sản phẩm mới nhất
             </h2>
-            <div class="text-sm text-gray-500">
-                Tổng cộng: <strong>{{ $products->total() ?? 0 }}</strong> sản phẩm
+            <div class="text-xs font-jetbrains text-on-surface-variant/60 uppercase tracking-wider">
+                Tổng cộng: <strong class="text-primary">{{ $products->total() ?? 0 }}</strong> sản phẩm
             </div>
         </div>
 
@@ -20,13 +20,13 @@
                     @forelse($products as $item)
                         <x-product-card :product="$item" />
                     @empty
-                        <div class="col-span-full py-20 text-center bg-gray-50 rounded-xl border border-dashed border-gray-300">
-                            <p class="text-gray-500 text-lg">Không tìm thấy sản phẩm nào phù hợp với bộ lọc.</p>
+                        <div class="col-span-full py-20 text-center bg-surface-container/60 rounded-xl border border-dashed border-white/10 shadow-inner">
+                            <p class="text-on-surface-variant/80 text-lg font-inter">Không tìm thấy sản phẩm nào phù hợp với bộ lọc.</p>
                         </div>
                     @endforelse
                 </div>
                 
-                <div class="mt-8">
+                <div class="mt-8 font-jetbrains text-xs">
                     {{ $products->links() }}
                 </div>
             </div>
