@@ -93,6 +93,7 @@
                         <span class="text-3xl font-black text-primary font-sora">{{ number_format($total) }} đ</span>
                     </div>
 
+                    @auth
                     <form action="{{ route('customer.checkout.store') }}" method="POST" class="space-y-4">
                         @csrf
                         <h3 class="font-jetbrains text-[10px] text-on-surface-variant/80 uppercase tracking-widest mb-2">Chọn phương thức thanh toán:</h3>
@@ -113,6 +114,16 @@
                             Xác nhận đặt hàng
                         </button>
                     </form>
+                    @else
+                    <div class="space-y-4">
+                        <div class="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl text-yellow-400 text-xs font-medium font-inter">
+                            ⚠️ Bạn cần đăng nhập để thực hiện đặt hàng.
+                        </div>
+                        <a href="{{ route('login') }}" class="btn-primary block text-center w-full py-4 px-6 rounded-xl transition-all uppercase tracking-wider font-sora font-bold text-sm">
+                            Đăng nhập để đặt hàng
+                        </a>
+                    </div>
+                    @endauth
 
                     <a href="{{ route('home') }}" class="block text-center mt-6 text-sm text-on-surface-variant hover:text-primary transition-colors font-inter">
                         &larr; Tiếp tục mua sắm

@@ -158,7 +158,7 @@
 
                         <!-- Actions Section -->
                         <div class="mt-4">
-                            @if(Auth::user()->role === 'customer')
+                            @if(!Auth::check() || Auth::user()->role === 'customer')
                             <form action="{{ route('customer.cart.add', $product->id) }}" method="POST" class="flex flex-col gap-4">
                                 @csrf
                                 <div class="flex items-center gap-4">
