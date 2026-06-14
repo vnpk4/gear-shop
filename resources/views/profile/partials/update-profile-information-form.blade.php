@@ -1,11 +1,11 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+        <h2 class="font-sora text-lg font-bold text-primary">
+            {{ __('Thông tin cá nhân') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+        <p class="mt-1 text-sm text-on-surface-variant/80 font-inter">
+            {{ __("Cập nhật thông tin tài khoản và địa chỉ email của bạn.") }}
         </p>
     </header>
 
@@ -18,8 +18,8 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Account Name')" />
-            <x-text-input disabled id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input-label for="name" :value="__('Tên tài khoản (đăng nhập)')" />
+            <x-text-input disabled id="name" name="name" type="text" class="mt-1 block w-full opacity-60 cursor-not-allowed" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <div>
@@ -30,7 +30,7 @@
 
         <div>
             <x-input-label for="birthday" :value="__('Ngày sinh')" />
-            <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full" :value="old('birthday', $user->birthday?->format('Y-m-data') ?? $user->birthday)" />
+            <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full" :value="old('birthday', $user->birthday?->format('Y-m-d') ?? $user->birthday)" />
             <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
         </div>
 
@@ -41,17 +41,17 @@
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div>
-                <p class="text-sm mt-2 text-gray-800">
-                    {{ __('Your email address is unverified.') }}
+                <p class="text-sm mt-2 text-on-surface-variant">
+                    {{ __('Địa chỉ email của bạn chưa được xác minh.') }}
 
-                    <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        {{ __('Click here to re-send the verification email.') }}
+                    <button form="send-verification" class="underline text-sm text-on-surface-variant hover:text-primary rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                        {{ __('Nhấn vào đây để gửi lại email xác minh.') }}
                     </button>
                 </p>
 
                 @if (session('status') === 'verification-link-sent')
-                <p class="mt-2 font-medium text-sm text-green-600">
-                    {{ __('A new verification link has been sent to your email address.') }}
+                <p class="mt-2 font-medium text-sm text-tertiary">
+                    {{ __('Một liên kết xác minh mới đã được gửi đến địa chỉ email của bạn.') }}
                 </p>
                 @endif
             </div>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Lưu thay đổi') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
             <p
@@ -67,7 +67,7 @@
                 x-show="show"
                 x-transition
                 x-init="setTimeout(() => show = false, 2000)"
-                class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+                class="text-sm text-on-surface-variant/70 font-jetbrains">{{ __('Đã lưu.') }}</p>
             @endif
         </div>
     </form>
