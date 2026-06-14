@@ -1,82 +1,83 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h2 class="font-sora font-extrabold text-xl text-on-surface leading-tight">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Admin Product Dashboard') }}
             </h2>
-            <div class="flex items-center gap-4">
-                <a href="{{ route('admin.products.create') }}" class="btn-primary px-4 py-2 rounded-xl text-xs font-bold font-sora uppercase tracking-wider shadow-sm flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">add</span> Thêm Sản Phẩm
-                </a>
-                <a href="{{ route('dashboard') }}" class="text-on-surface-variant hover:text-primary transition-colors font-medium text-sm font-inter">
-                    &larr; Dashboard
-                </a>
-            </div>
+            <a href="{{ route('admin.products.create') }}" class="bg-blue-600 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                + Thêm Sản Phẩm
+            </a>
+            <a href="{{ route('dashboard') }}" class="text-gray-500 hover:text-gray-700 font-medium underline">
+                &larr; Quay lại danh sách
+            </a>
         </div>
     </x-slot>
 
-    <div class="py-12 bg-background min-h-screen text-on-surface">
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if(session('success'))
-            <div class="bg-tertiary/10 border-l-4 border-tertiary text-tertiary p-4 mb-6 rounded-lg shadow-sm font-inter text-sm">
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded shadow-sm">
                 {{ session('success') }}
             </div>
             @endif
 
-            <div class="bg-surface-container/60 overflow-hidden shadow-xl sm:rounded-lg border border-white/5">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border border-gray-200">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full table-fixed divide-y divide-white/5">
-                        <thead class="bg-surface-container-high/60">
-                            <tr class="text-xs font-bold text-on-surface-variant uppercase tracking-wider font-jetbrains">
-                                <th scope="col" class="w-32 px-6 py-4 text-center">
+                    <table class="min-w-full table-fixed divide-y divide-gray-200 border-b border-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="w-32 px-6 py-4 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">
                                     Hình ảnh
                                 </th>
-                                <th scope="col" class="px-6 py-4 text-left">
+
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
                                     Tên sản phẩm
                                 </th>
-                                <th scope="col" class="w-40 px-6 py-4 text-right">
+
+                                <th scope="col" class="w-40 px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">
                                     Giá tiền
                                 </th>
-                                <th scope="col" class="w-64 px-6 py-4 text-center">
+
+                                <th scope="col" class="w-64 px-6 py-4 text-center text-xs font-bold text-gray-500 uppercase tracking-wider">
                                     Hành động
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/5 text-sm font-inter">
+                        <tbody class="bg-white divide-y divide-gray-200">
                             @foreach($products as $item)
-                            <tr class="hover:bg-white/5 transition duration-150">
+                            <tr class="hover:bg-gray-50 transition duration-150">
 
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     @if($item->image_path)
-                                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="Ảnh" class="w-24 h-16 mx-auto object-cover rounded-md border border-white/10 shadow-sm">
+                                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="Ảnh" class="w-24 h-16 mx-auto object-cover rounded-md border border-gray-300 shadow-sm">
                                     @else
-                                    <span class="inline-flex items-center justify-center w-24 h-16 mx-auto rounded-md bg-white/5 text-on-surface-variant/40 text-xs border border-white/10">Trống</span>
+                                    <span class="inline-flex items-center justify-center w-24 h-16 mx-auto rounded-md bg-gray-100 text-gray-400 text-xs border border-gray-200">Trống</span>
                                     @endif
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="font-semibold text-on-surface truncate text-left font-sora">{{ $item->name }}</div>
+                                    <div class="text-sm font-medium text-gray-900 truncate text-left">{{ $item->name }}</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right">
-                                    <div class="font-bold text-primary font-jetbrains">{{ number_format($item->price) }} ₫</div>
+                                    <div class="text-sm font-bold text-red-600">{{ number_format($item->price) }} ₫</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                     <div class="flex items-center justify-center space-x-3">
 
-                                        <a href="{{ route('admin.products.show', $item->id) }}" class="text-on-surface hover:text-primary bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg transition duration-200 font-jetbrains text-xs">
+                                        <a href="{{ route('admin.products.show', $item->id) }}" class="text-gray-700 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded transition duration-200">
                                             Xem
                                         </a>
 
-                                        <a href="{{ route('admin.products.edit', $item->id) }}" class="text-secondary hover:text-white bg-secondary/10 hover:bg-secondary px-3 py-1.5 rounded-lg transition duration-200 font-jetbrains text-xs">
+                                        <a href="{{ route('admin.products.edit', $item->id) }}" class="text-green-600 hover:text-green-900 bg-green-50 hover:bg-green-100 px-3 py-1 rounded transition duration-200">
                                             Sửa
                                         </a>
 
                                         <form action="{{ route('admin.products.destroy', $item->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-error hover:text-white bg-error/10 hover:bg-error px-3 py-1.5 rounded-lg transition duration-200 font-jetbrains text-xs">
+                                            <button type="submit" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 px-3 py-1 rounded transition duration-200">
                                                 Xóa
                                             </button>
                                         </form>
@@ -90,7 +91,7 @@
                 </div>
 
                 @if($products->hasPages())
-                <div class="bg-surface-container-high/60 px-6 py-4 border-t border-white/5">
+                <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
                     {{ $products->links() }}
                 </div>
                 @endif
