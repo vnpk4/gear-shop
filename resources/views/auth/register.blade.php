@@ -99,7 +99,7 @@
                         If you already have a connection profile established, access the grid using your secure credentials.
                     </p>
                     <a class="inline-flex items-center justify-center h-12 px-8 rounded-lg font-sora text-button-text uppercase tracking-widest btn-secondary border-primary/50 text-primary hover:bg-primary/10 group" href="{{ route('login') }}">
-                        Access Grid
+                        Đăng nhập
                         <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">login</span>
                     </a>
                 </div>
@@ -138,7 +138,7 @@
 
                         <!-- Email Address -->
                         <div class="space-y-stack-xs relative group">
-                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="email">Email Sequence</label>
+                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="email">Email</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
                                 <input class="glass-input w-full h-11 pl-12 pr-4 rounded-lg text-on-surface font-inter text-body-md placeholder:text-on-surface-variant/50 focus:ring-0" id="email" name="email" value="{{ old('email') }}" placeholder="pilot@gearmaster.com" type="email" required autocomplete="username"/>
@@ -148,7 +148,7 @@
 
                         <!-- Password -->
                         <div class="space-y-stack-xs relative group">
-                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="password">Security Key</label>
+                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="password">Password</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
                                 <input class="glass-input w-full h-11 pl-12 pr-12 rounded-lg text-on-surface font-inter text-body-md placeholder:text-on-surface-variant/50 focus:ring-0" id="password" name="password" placeholder="••••••••" type="password" required autocomplete="new-password"/>

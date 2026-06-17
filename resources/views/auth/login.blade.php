@@ -87,8 +87,8 @@
             <!-- Left Side: Login -->
             <div class="bg-surface/90 p-8 md:p-12 flex flex-col justify-center">
                 <div class="max-w-md mx-auto w-full">
-                    <h1 class="font-sora text-headline-xl text-on-surface mb-2">Access Grid</h1>
-                    <p class="text-on-surface-variant mb-8 font-inter text-body-md">Enter your credentials to connect to GearMaster.</p>
+                    <h1 class="font-sora text-headline-xl text-on-surface mb-2">Đăng nhập</h1>
+                    <p class="text-on-surface-variant mb-8 font-inter text-body-md">Điền đầy đủ thông tin để đăng nhập!</p>
                     
                     <!-- Session Status -->
                     <x-auth-session-status class="mb-6" :status="session('status')" />
@@ -98,7 +98,7 @@
 
                         <!-- Email Address -->
                         <div class="space-y-stack-xs relative group" id="email-field-group">
-                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="email">Email Sequence</label>
+                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="email">Email</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
                                 <input class="glass-input w-full h-12 pl-12 pr-4 rounded-lg text-on-surface font-inter text-body-md placeholder:text-on-surface-variant/50 focus:ring-0" id="email" name="email" value="{{ old('email') }}" placeholder="pilot@gearmaster.com" type="email" required autofocus autocomplete="username"/>
@@ -109,9 +109,9 @@
                         <!-- Password -->
                         <div class="space-y-stack-xs relative group" id="password-field-group">
                             <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors flex justify-between w-full" for="password">
-                                <span>Security Key</span>
+                                <span>Password</span>
                                 @if (Route::has('password.request'))
-                                    <a class="text-primary hover:text-surface-tint hover:underline decoration-primary/30 font-inter text-sm" href="{{ route('password.request') }}">Lost key?</a>
+                                    <a class="text-primary hover:text-surface-tint hover:underline decoration-primary/30 font-inter text-sm" href="{{ route('password.request') }}">Lấy lại mật khẩu!</a>
                                 @endif
                             </label>
                             <div class="relative">
@@ -128,12 +128,12 @@
                         <div class="flex items-center mt-4">
                             <input id="remember_me" type="checkbox" name="remember" class="h-4 w-4 text-primary focus:ring-primary border-white/20 rounded bg-surface-container-high transition duration-150 ease-in-out">
                             <label for="remember_me" class="ml-2 block text-sm text-on-surface-variant font-inter">
-                                Remember link status
+                                Lưu mật khẩu
                             </label>
                         </div>
 
                         <button class="btn-primary w-full h-12 rounded-lg font-sora text-button-text uppercase tracking-widest mt-6 flex items-center justify-center gap-2 group" type="submit">
-                            Initialize Link
+                            ĐĂNG NHẬP
                             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                         </button>
                     </form>
@@ -166,26 +166,26 @@
                     <div class="mb-8 inline-flex items-center justify-center w-16 h-16 rounded-xl bg-surface-container shadow-[0_0_20px_rgba(164,230,255,0.15)] border border-primary/20">
                         <span class="material-symbols-outlined text-primary text-[32px]">memory</span>
                     </div>
-                    <h2 class="font-sora text-headline-xl text-on-surface mb-4 leading-tight">New Construct?</h2>
+                    <h2 class="font-sora text-headline-xl text-on-surface mb-4 leading-tight">Chưa có tài khoản?</h2>
                     <p class="text-on-surface-variant font-inter text-body-lg mb-8 leading-relaxed">
-                        Register to unlock personalized loadouts, priority shipping on exclusive hardware drops, and seamless order telemetry.
+                        Đăng ký để nhận ưu đãi hấp dẫn và trải nghiệm các sản phẩm tốt nhất! 
                     </p>
                     <div class="space-y-4 mb-10">
                         <div class="flex items-center gap-4">
                             <span class="material-symbols-outlined text-tertiary">check_circle</span>
-                            <span class="font-inter text-on-surface">Build Tracking Dashboard</span>
+                            <span class="font-inter text-on-surface">Sản phẩm đa dạng</span>
                         </div>
                         <div class="flex items-center gap-4">
                             <span class="material-symbols-outlined text-tertiary">check_circle</span>
-                            <span class="font-inter text-on-surface">Early Access to New Tech</span>
+                            <span class="font-inter text-on-surface">Giao hàng nhanh</span>
                         </div>
                         <div class="flex items-center gap-4">
                             <span class="material-symbols-outlined text-tertiary">check_circle</span>
-                            <span class="font-inter text-on-surface">Secure Payment Vault</span>
+                            <span class="font-inter text-on-surface">Thanh toán an toàn</span>
                         </div>
                     </div>
                     <a class="inline-flex items-center justify-center h-12 px-8 rounded-lg font-sora text-button-text uppercase tracking-widest btn-secondary border-primary/50 text-primary hover:bg-primary/10 group" href="{{ route('register') }}">
-                        Begin Registration
+                        ĐĂNG KÝ
                         <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">rocket_launch</span>
                     </a>
                 </div>
