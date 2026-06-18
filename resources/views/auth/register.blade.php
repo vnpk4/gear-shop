@@ -96,7 +96,7 @@
                     </div>
                     <h2 class="font-sora text-headline-xl text-on-surface mb-4 leading-tight">Đã có tài khoản?</h2>
                     <p class="text-on-surface-variant font-inter text-body-lg mb-8 leading-relaxed">
-                        Nếu bạn đã có tài khoản, đăng nhập vào hệ thống bằng tài khoản của bạn.
+                        Đăng nhập vào hệ thống bằng tài khoản của bạn.
                     </p>
                     <a class="inline-flex items-center justify-center h-12 px-8 rounded-lg font-sora text-button-text uppercase tracking-widest btn-secondary border-primary/50 text-primary hover:bg-primary/10 group" href="{{ route('login') }}">
                         Đăng nhập
