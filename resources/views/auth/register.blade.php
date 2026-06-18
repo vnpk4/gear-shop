@@ -94,9 +94,9 @@
                     <div class="mb-8 inline-flex items-center justify-center w-16 h-16 rounded-xl bg-surface-container shadow-[0_0_20px_rgba(164,230,255,0.15)] border border-primary/20">
                         <span class="material-symbols-outlined text-primary text-[32px]">shield</span>
                     </div>
-                    <h2 class="font-sora text-headline-xl text-on-surface mb-4 leading-tight">Already Constructed?</h2>
+                    <h2 class="font-sora text-headline-xl text-on-surface mb-4 leading-tight">Đã có tài khoản?</h2>
                     <p class="text-on-surface-variant font-inter text-body-lg mb-8 leading-relaxed">
-                        If you already have a connection profile established, access the grid using your secure credentials.
+                        Nếu bạn đã có tài khoản, đăng nhập vào hệ thống bằng tài khoản của bạn.
                     </p>
                     <a class="inline-flex items-center justify-center h-12 px-8 rounded-lg font-sora text-button-text uppercase tracking-widest btn-secondary border-primary/50 text-primary hover:bg-primary/10 group" href="{{ route('login') }}">
                         Đăng nhập
@@ -110,15 +110,15 @@
             <!-- Right Side: Register -->
             <div class="bg-surface/90 p-8 md:p-12 flex flex-col justify-center">
                 <div class="max-w-md mx-auto w-full">
-                    <h1 class="font-sora text-headline-xl text-on-surface mb-2">New Construct</h1>
-                    <p class="text-on-surface-variant mb-8 font-inter text-body-md">Create your profile to initialize your GearMaster account.</p>
+                    <h1 class="font-sora text-headline-xl text-on-surface mb-2">Tạo tài khoản mới</h1>
+                    <p class="text-on-surface-variant mb-8 font-inter text-body-md">Tạo tài khoản để bắt đầu sử dụng GearMaster.</p>
 
                     <form method="POST" action="{{ route('register') }}" class="space-y-4">
                         @csrf
 
                         <!-- Name (Account Name) -->
                         <div class="space-y-stack-xs relative group">
-                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="name">Account Name</label>
+                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="name">Tên tài khoản</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">person</span>
                                 <input class="glass-input w-full h-11 pl-12 pr-4 rounded-lg text-on-surface font-inter text-body-md placeholder:text-on-surface-variant/50 focus:ring-0" id="name" name="name" value="{{ old('name') }}" placeholder="pilot101" type="text" required autofocus autocomplete="name"/>
@@ -128,7 +128,7 @@
 
                         <!-- Real Name -->
                         <div class="space-y-stack-xs relative group">
-                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="realname">Real Name</label>
+                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="realname">Họ và tên</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">badge</span>
                                 <input class="glass-input w-full h-11 pl-12 pr-4 rounded-lg text-on-surface font-inter text-body-md placeholder:text-on-surface-variant/50 focus:ring-0" id="realname" name="realname" value="{{ old('realname') }}" placeholder="Alex Mercer" type="text" required autocomplete="name"/>
@@ -148,7 +148,7 @@
 
                         <!-- Password -->
                         <div class="space-y-stack-xs relative group">
-                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="password">Password</label>
+                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="password">Mật khẩu</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
                                 <input class="glass-input w-full h-11 pl-12 pr-12 rounded-lg text-on-surface font-inter text-body-md placeholder:text-on-surface-variant/50 focus:ring-0" id="password" name="password" placeholder="••••••••" type="password" required autocomplete="new-password"/>
@@ -161,7 +161,7 @@
 
                         <!-- Confirm Password -->
                         <div class="space-y-stack-xs relative group">
-                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="password_confirmation">Confirm Key</label>
+                            <label class="font-jetbrains text-label-mono text-on-surface-variant group-focus-within:text-primary transition-colors" for="password_confirmation">Xác nhận mật khẩu</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock_reset</span>
                                 <input class="glass-input w-full h-11 pl-12 pr-12 rounded-lg text-on-surface font-inter text-body-md placeholder:text-on-surface-variant/50 focus:ring-0" id="password_confirmation" name="password_confirmation" placeholder="••••••••" type="password" required autocomplete="new-password"/>
@@ -173,14 +173,14 @@
                         </div>
 
                         <button class="btn-primary w-full h-12 rounded-lg font-sora text-button-text uppercase tracking-widest mt-6 flex items-center justify-center gap-2 group" type="submit">
-                            Begin Construction
+                            Tạo tài khoản
                             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">rocket_launch</span>
                         </button>
                     </form>
 
                     <div class="mt-6 text-center lg:hidden">
                         <a href="{{ route('login') }}" class="text-sm font-medium text-primary hover:underline">
-                            Already constructed? Sign in
+                            Đã có tài khoản? Đăng nhập
                         </a>
                     </div>
                 </div>
