@@ -11,19 +11,19 @@
         -10% Drop
     </div>
 
-    <div class="aspect-square w-full mb-4 overflow-hidden rounded-lg bg-white/5 flex items-center justify-center p-2 relative cursor-pointer border border-white/5">
+    <a href="{{ $detailUrl }}" class="aspect-square w-full mb-4 overflow-hidden rounded-lg bg-white/5 flex items-center justify-center p-2 relative cursor-pointer border border-white/5 block">
         @if($product->image_path)
             <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
         @else
             <img src="https://via.placeholder.com/200" class="opacity-10">
         @endif
 
-        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-            <a href="{{ $detailUrl }}" class="btn-primary text-xs font-bold py-2.5 px-6 rounded-lg uppercase tracking-wider shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-sora">
+        <div class="absolute inset-0 bg-black/60 hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+            <span class="btn-primary text-xs font-bold py-2.5 px-6 rounded-lg uppercase tracking-wider shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-sora">
                 Xem chi tiết
-            </a>
+            </span>
         </div>
-    </div>
+    </a>
 
     <div class="flex flex-col flex-grow">
         <p class="text-[10px] text-primary font-bold uppercase tracking-widest font-jetbrains">{{ $product->brand->name ?? 'GEARMASTER' }}</p>

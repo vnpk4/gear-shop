@@ -8,7 +8,8 @@
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Products List -->
             <div class="w-full lg:w-2/3 bg-surface-container/60 rounded-2xl border border-white/5 shadow-sm overflow-hidden">
-                <div class="overflow-x-auto">
+                <!-- Desktop Table -->
+                <div class="overflow-x-auto hidden md:block">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-surface-container-high/60 border-b border-white/5 text-xs text-on-surface-variant uppercase tracking-wider">
@@ -69,6 +70,62 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Mobile Card List -->
+                <div class="block md:hidden divide-y divide-white/5">
+                    @php $total = 0; @endphp
+                    @foreach($cart as $id => $details)
+                    @php
+                    $subtotal = $details['price'] * $details['quantity'];
+                    $total += $subtotal;
+                    @endphp
+                    <div class="p-4 flex flex-col gap-4">
+                        <div class="flex gap-4">
+                            <!-- Image -->
+                            <div class="w-20 h-20 bg-white/5 border border-white/10 rounded-xl p-2 flex-shrink-0 flex items-center justify-center">
+                                @if($details['image'])
+                                <img src="{{ asset('storage/' . $details['image']) }}" alt="{{ $details['name'] }}" class="max-h-full object-contain">
+                                @else
+                                <img src="https://via.placeholder.com/100" class="opacity-10">
+                                @endif
+                            </div>
+                            
+                            <!-- Name & Price & Delete -->
+                            <div class="flex-grow flex flex-col justify-between">
+                                <div class="flex justify-between items-start gap-2">
+                                    <a href="{{ route('customer.products.show', $id) }}" class="font-sora font-bold text-sm text-on-surface hover:text-primary transition-colors line-clamp-2 leading-tight">
+                                        {{ $details['name'] }}
+                                    </a>
+                                    <form action="{{ route('customer.cart.remove', $id) }}" method="POST" class="flex-shrink-0">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-on-surface-variant/50 hover:text-error transition-colors p-1 rounded-full hover:bg-error-container/20" title="Xóa khỏi giỏ">
+                                            <span class="material-symbols-outlined text-lg">delete</span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="text-xs text-on-surface-variant/80 font-jetbrains mt-1">
+                                    Đơn giá: {{ number_format($details['price']) }} đ
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quantity and Subtotal -->
+                        <div class="flex justify-between items-center bg-white/5 p-3 rounded-xl border border-white/5">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] uppercase font-jetbrains text-on-surface-variant/70">Số lượng:</span>
+                                <span class="bg-white/10 text-on-surface font-jetbrains font-bold py-1 px-2.5 rounded-lg text-xs">
+                                    {{ $details['quantity'] }}
+                                </span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] uppercase font-jetbrains text-on-surface-variant/70 block">Thành tiền:</span>
+                                <span class="font-black text-primary font-sora text-sm">{{ number_format($subtotal) }} đ</span>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
 
